@@ -5,9 +5,8 @@ from wtforms.validators import DataRequired
 
 class Parsing(FlaskForm):
     url = StringField('URL', validators=[DataRequired()])
-    clone = BooleanField('Clone')
-    only_urls = BooleanField('Only URLS')
-    keys = BooleanField('Keys')
-    dns = BooleanField('DNS')
-    submit = SubmitField('SUBMIT')
-    download = SubmitField('DOWNLOAD ZIP')
+    clone = BooleanField('Clone', default=False) #убрать
+    only_urls = BooleanField('Only URLS', default=False)
+    keys = BooleanField('Keys', default=False)
+    dns = BooleanField('DNS', default=False) #убрать
+    download = SubmitField('DOWNLOAD ZIP', default=False)
