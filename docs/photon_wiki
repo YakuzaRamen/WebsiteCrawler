@@ -1,0 +1,59 @@
+
+                     -------user tools-------
+
+  -u --url              root url                               (string)
+  -v --verbose          verbose output                         (bool печатает инфу по мере нахождения)
+  --clone               clone the website locally               (bool),
+  --export=json                                                 (bool экспорт в виде джсон(по умолчанию) или цсв),
+  --only-urls           only extract urls                       (bool чекает только урлы),
+  --keys                extract secret keys                     (bool  чекает ключи),
+  --dns                 enumerate subdomains & dns data         (bool картинку возвращает),
+
+
+
+
+
+                    -------dev tools-------
+
+       --stdout              print a variable to stdout
+"""
+Вы можете записать переменную выбора в стандартный вывод для передачи с другими программами.
+Поддерживаются следующие переменные:
+
+files, intel, robots, custom, failed, internal, scripts, external, fuzzable, endpoints, keys
+
+python photon.py -u http://example.com --stdout=custom | resolver.py
+"""
+
+      -o --output           specify output directory
+"""
+Опция: -oили --output | По умолчанию:domain name of target
+
+Photon сохраняет результаты в каталоге с именем доменного имени цели, но вы можете перезаписать это поведение, используя эту опцию.
+"""
+
+       --wayback             Use URLs from archive.org as seeds
+"""
+Эта опция позволяет получать заархивированные URL-адреса с archive.org и использовать их в качестве исходных.
+Будут выбраны только URL-адреса, просканированные в течение текущего года, чтобы убедиться, что они не мертвы.
+"""
+
+                        -------for lib use-------
+
+The crawl function returns a dict by default but you can use the format='json' argument for json output.
+It applies to both crawl and result functions.
+A sample json output can be found here.
+
+To make the crawling as flexible as possible, following optional arguments are present
+
+level 	    int 	    2
+threads 	int 	    2
+timeout 	float 	    6
+delay 	    float 	    0
+regex 	    str 	    None
+exclude 	str 	    None
+seeds 	    list 	    None
+user_agent 	list 	    random
+cookies 	dict 	    None
+keys 	    boolean 	False
+only_urls 	boolean 	False

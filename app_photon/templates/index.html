@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photon</title>
+</head>
+<body>
+    <h1>Photon</h1>
+    <form action="" method="post" novalidate>
+        <p>
+            {{ form.url.label }}
+            {{ form.url(size=100) }}
+        </p>
+        <p>{{ form.clone() }} {{ form.clone.label }}</p>
+        <p>{{ form.only_urls() }} {{ form.only_urls.label }}</p>
+        <p>{{ form.keys() }} {{ form.keys.label }}</p>
+        <p>{{ form.dns() }} {{ form.dns.label }}</p>
+        <p>{{ form.submit() }}</p>
+        <p>{{ form.download }}</p>
+
+    </form>
+</body>
+</html>
