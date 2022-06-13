@@ -8,7 +8,7 @@ from app_photon.search_config import SearchConfig
 # функция обращения к фотон
 def photon_parsing() -> None:
     os.system(
-        f'python Photon\photon.py --url {SearchConfig.URL} '
+        f'python3 Photon/photon.py --url {SearchConfig.URL} '
         f'--export=json '
         f'--output "{Config.OS_PATH_RESULT}" '
         f'{SearchConfig.PARAMETERS_SEARCH}')

@@ -13,7 +13,7 @@ def index():
         set_search_param(form)
         photon_parsing()
         zip_result()
-        cleaner()
+ #       cleaner()
         flash('Good parsing, start sending file!')
         return redirect(url_for('download'))
     else:
