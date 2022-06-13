@@ -32,6 +32,7 @@ def cleaner() -> None:
 
 # конфигурирует параметры поиска
 def set_search_param(form):
+    SearchConfig.URL = form.url.data
     if form.clone.data is True:
         SearchConfig.PARAMETERS_SEARCH += '--clone '
     if form.only_urls.data is True:
