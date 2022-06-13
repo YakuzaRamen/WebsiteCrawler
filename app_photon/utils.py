@@ -1,7 +1,6 @@
 import os
 import shutil
 
-from app_photon.forms import Parsing
 from config import Config
 from app_photon.search_config import SearchConfig
 
@@ -20,7 +19,11 @@ def zip_result() -> None:
     zip_path = shutil.make_archive(root_dir=Config.OS_PATH_RESULT, base_name='zipped_scrap', format='zip')
     SearchConfig.ZIP_PATH = zip_path
 
-# функция удаления директории shutil
+def change_directory_zipped():
+    os.replace(SearchConfig.ZIP_PATH, Config.OS_PATH_RESULT)
+
+
+# функция чистящая параметры и рещультаты поиска
 def cleaner() -> None:
     shutil.rmtree(Config.OS_PATH_RESULT)
     SearchConfig.URL = ''
@@ -28,16 +31,14 @@ def cleaner() -> None:
 
 
 # конфигурирует параметры поиска
-def set_search_param():
-    form = Parsing
-    if form.clone.data == True:
+def set_search_param(form):
+    if form.clone.data is True:
         SearchConfig.PARAMETERS_SEARCH += '--clone '
-    if form.only_urls.data == True:
+    if form.only_urls.data is True:
         SearchConfig.PARAMETERS_SEARCH += '--only-urls '
-    if form.keys.data == True:
+    if form.keys.data is True:
         SearchConfig.PARAMETERS_SEARCH += '--keys '
-    if form.dns.data == True:
+    if form.dns.data is True:
         SearchConfig.PARAMETERS_SEARCH += '--dns '
-
 
 # функция предположительно возвращает архив для отгрузки пользователю
