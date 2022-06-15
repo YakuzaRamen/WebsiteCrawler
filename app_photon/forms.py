@@ -20,3 +20,4 @@ class DataGenerator(FlaskForm):
 
 class Image(FlaskForm):
     file = FileField('FILE')
+    download = SubmitField('DOWNLOAD RESULT', default=False)

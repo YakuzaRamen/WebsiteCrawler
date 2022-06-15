@@ -9,7 +9,11 @@
   --keys                extract secret keys                     (bool  чекает ключи),
   --dns                 enumerate subdomains & dns data         (bool картинку возвращает),
 
-
+    <form action = "http://localhost:5000/claster" method = "POST"
+         enctype = "multipart/form-data">
+         <input type = "file" name = "file">
+         <input type = "submit">
+         </form>
 
 
 

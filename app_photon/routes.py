@@ -1,9 +1,15 @@
 # -*- coding: utf-8 -*-
+import os.path
+
 from flask import render_template, url_for, request, redirect, send_file, flash
+from matplotlib import pyplot as plt
+
 from app_photon import app
+from PIL import Image
+from os import path
 from app_photon.search_config import SearchConfig
 from app_photon.forms import Parsing, DataGenerator, Image
-from app_photon.utils import data_csv, photon_parsing, cleaner, zip_result, set_search_param, csv_reader
+from app_photon.utils import save_image, data_csv, photon_parsing, cleaner, zip_result, set_search_param, csv_reader
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -12,7 +18,7 @@ def index():
     if request.method == 'POST':
         set_search_param(form)
         photon_parsing()
-        zip_result()
+        zip_result('zipped_scrap')
         cleaner()
         flash('Good parsing, start sending file!')
         return redirect(url_for('download'))
@@ -45,11 +51,24 @@ def download_csv():
 
 
 
+@app.route('/download/image')
+def download_image():
+    return send_file(SearchConfig.IMAGE_PATH, 'result')
+
 
 @app.route('/claster', methods=['GET', 'POST'])
 def claster():
-    form = Image
-
+    form = Image()
+    if request.method == ['POST']:
+        data = csv_reader(form)
+        print(data)
+        plt.figure(figsize=(5, 5))
+        plt.plot(data[:, 0], data[:, 1], 'bo')
+        plt.savefig('foo.png')
+        image = Image.open('foo.png')
+        image.save('foo.png')
+        os.path.abspath('foo.png')
+        return redirect(url_for('download_image'))
     return render_template('render_data_image.html', form=form,
                            title='Claster Generator',
                            description='Upload csv file and press download to get image')

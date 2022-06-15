@@ -3,4 +3,4 @@ class SearchConfig():
     PARAMETERS_SEARCH = ' '
     ZIP_PATH = ''
     CSV_PATH = r'C:\Users\pkarn\PycharmProjects\flaskProject\eggs.csv'
-    IMAGE_PATH = r'C:\Users\pkarn\PycharmProjects\flaskProject'
+    IMAGE_PATH = r'C:\Users\pkarn\PycharmProjects\flaskProject\result.png'

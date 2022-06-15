@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import csv
+from PIL import Image
 
 from config import Config
 from app_photon.search_config import SearchConfig
@@ -18,8 +19,8 @@ def photon_parsing() -> None:
 
 
 # функция архивации директории shutil
-def zip_result() -> None:
-    zip_path = shutil.make_archive(root_dir=Config.OS_PATH_RESULT, base_name='zipped_scrap', format='zip')
+def zip_result(name: str) -> None:
+    zip_path = shutil.make_archive(root_dir=Config.OS_PATH_RESULT, base_name=name, format='zip')
     SearchConfig.ZIP_PATH = zip_path
 
 def change_directory_zipped():
@@ -59,11 +60,12 @@ def data_csv():
     frame.to_csv('eggs.csv', index=False, )
 
 
-def csv_reader(path_to_csv: str) -> list:
+def csv_reader(form) -> list:
+    file = form.file.data
     data_klaster = []
     result = []
-    with open(path_to_csv) as csv_file:
-        csv_reader = csv.reader(csv_file)
+    with open(file) as open_csv_file:
+        csv_reader = csv.reader(open_csv_file)
         for row in csv_reader:
             data_klaster.append(row)
     for data in data_klaster:
@@ -71,5 +73,14 @@ def csv_reader(path_to_csv: str) -> list:
         for i in data:
             row_data.append(float(i))
         result.append(row_data)
+    print(result)
     return result
+
+def save_image(file):
+    data = csv_reader(file)
+    plt.figure(figsize=(5, 5))
+    plt.plot(data[:, 0], data[:, 1], 'bo')
+    plt.savefig('foo.png')
+
+    return Image.open('foo.png') #image.save('foo.png') image = Image.open('foo.png')
 
